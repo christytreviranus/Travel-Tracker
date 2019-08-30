@@ -1,67 +1,152 @@
-//Make Edits and remove comment afterwards
-
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
 // ******************************************************************************
 // *** Dependencies
 // =============================================================
-require('dotenv').config()
+
 const express = require("express");
-const bodyParser = require('body-parser');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const exphbs = require('express-handlebars');
-const customAuthMiddleware = require('./middleware/custom-auth-middleware');
+const path = require("path");
+// const passportSetup = require('./config/passport.js');
+const keys = require("./keys.js");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
+const { check, validationResult } = require('express-validator');
+const exphbs = require("express-handlebars");
+// Authentication packages
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const bcrypt = require('bcrypt');
+
+// Sets up the Express App
 const app = express();
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
-let db = require("./models")
+// Requiring our models for syncing
+const db = require("./models");
 
-// Sets up the Express app to handle data parsing
+// Import routes and give the server access to them.
+const index = require('./controllers/user-controller');
 
 
-// Express middleware that allows POSTing data
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// dotenv for securing sensitive information
+require("dotenv").config();
 
 // Static directory
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
-app.use(customAuthMiddleware);
+app.use(express.static("public"));
 
-app.set('views', path.join(__dirname, '/views'));
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main',
-  extname: '.handlebars',
-  layoutsDir: 'views/layouts'
-}));
-app.set('view engine', 'handlebars');
+// Set Handlebars.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// cookie session - used for google oAuth
+// app.use(cookieSession({
+//     maxAge: 24 * 60 * 60 * 1000,
+//     keys: [keys.cookiekey]
+// }))
+
+// Sets up the Express app to handle data parsing
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// for body-parser - using express to handle data parsing
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+// express-mysql-session
+var options = {
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'root',
+  database: 'travel_db'
+};
+
+const sessionStore = new MySQLStore(options);
 
 
-// controller imports
-var userController = require('./controllers/user-controller');
-var viewsController = require('./controllers/views-controller');
+app.use(session({
+  secret: 'pejtpewjtptjww',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+  // cookie: { secure: true }
+}))
 
-// hook up our controllers
-app.use(userController);
-app.use(viewsController);
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 // =============================================================
+app.use('/', index);
+app.get("/css", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/css/style.css"))
+});
 
-require('./controllers/user-controller');
-require('./controllers/views-controller');
-require("./controllers/trip-controller.js")(app);
-require("./controllers/entry-controller.js")(app);
-require("./controllers/travelTracker_controller.js")(app);
-require("./controllers/mytrips-controller.js")(app);
-require("./controllers/myentries_controller.js")(app);
+passport.use(new LocalStrategy(
+
+  {
+    // by default, local strategy uses username and password, we will override with email
+    usernameField: 'username',
+    passwordField: 'password',
+    passReqToCallback: true // allows us to pass back the entire request to the callback
+  }, 
+
+function(req, username, password, done) {
+ 
+  // const User = user;
+  const User = require("./models/user_model.js");
+  const bcrypt = require('bcrypt');
+
+  var isValidPassword = function(userpass, password) {
+      return bcrypt.compareSync(password, userpass);
+  }
+
+  db.User.findOne({
+      where: {
+          username: username
+      }
+  }).then(function(user) {
+
+      if (!user) {
+          return done(null, false, {
+              message: 'User does not exist'
+          });
+      }
+
+      if (!isValidPassword(user.password, password)) {
+          return done(null, false, {
+              message: 'Incorrect password.'
+          });
+      }
+
+      var userinfo = user.get();
+      return done(null, userinfo);
+
+  }).catch(function(err) {
+      console.log("Error:", err);
+      return done(null, false, {
+          message: 'Something went wrong with your Signin'
+      });
+  });
+}
+));
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: false}).then(function() {
-  app.listen(PORT, function() {
+
+// this line drops the current table if already exists
+// db.sequelize.sync({ force: true }).then(function() {
+
+db.sequelize.sync().then(function () {               //this line allows tables to remain without getting dropped everytime server is restarted
+  app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+
+
+
+
+
