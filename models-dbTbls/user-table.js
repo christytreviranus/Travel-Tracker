@@ -1,4 +1,3 @@
-//TEMPLATE:  Make edits here and remove comment after done
 'use strict';
 module.exports = {
     up: (queryInterface, Sequelize) => {
