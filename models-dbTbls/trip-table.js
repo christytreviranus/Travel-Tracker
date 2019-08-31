@@ -11,7 +11,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       tripTitle: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          len: [1, 150]
+        }
       },
       picture: {
         type: Sequelize.STRING
@@ -21,6 +24,9 @@ module.exports = {
       },
       tripEnd: {
           type: Sequelize.DATE
+      },
+      tripRating: {
+        type: Sequelize.STRING
       },      
       createdAt: {
         allowNull: false,
@@ -36,3 +42,9 @@ module.exports = {
     return queryInterface.dropTable('Trips');
   }
 };
+
+Trips.associate = (models) => {
+  Trips.belongsTo(models.Users, {
+    foreignKey: 'id'
+  });
+}

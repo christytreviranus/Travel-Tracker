@@ -1,5 +1,3 @@
-//Make edits here and remove comment after done
-
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -11,7 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          len: [1, 150]
+        }  
       },
       note: {
         type: Sequelize.STRING
@@ -33,3 +34,14 @@ module.exports = {
     return queryInterface.dropTable('Entries');
   }
 };
+
+Entries.associate = (models) => {
+  Entries.belongsTo(models.Users, {
+    foreignKey: 'id'
+  });
+}
+Entries.associate = (models) => {
+  Entries.belongsTo(models.Trips, {
+    foreignKey: 'id'
+  });
+}
