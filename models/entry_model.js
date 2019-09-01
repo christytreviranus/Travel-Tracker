@@ -10,6 +10,10 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING
         },
         entryNote: {
+            type: Sequelize.TEXT,
+            len: [1, 1000]
+        },
+        picture: {
             type: Sequelize.STRING
         },
         entryDate: {
@@ -18,3 +22,15 @@ module.exports = function (sequelize, Sequelize) {
     });
     return Entry;
 };
+
+Entries.associate = (models) => {
+    Entries.belongsTo(models.Users, {
+      foreignKey: 'id'
+    });
+  }
+  Entries.associate = (models) => {
+    Entries.belongsTo(models.Trips, {
+      foreignKey: 'id'
+    });
+  }
+  

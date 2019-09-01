@@ -22,6 +22,12 @@ module.exports = function (sequelize, Sequelize) {
     return Trip;
 };
 
+Trips.associate = (models) => {
+    Trips.belongsTo(models.Users, {
+      foreignKey: 'id'
+    });
+  }
+
 
 
 

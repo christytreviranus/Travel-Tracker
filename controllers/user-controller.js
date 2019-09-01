@@ -21,7 +21,7 @@ const saltRounds = 10;
         router.get('/profile', authenticationMiddleware(), function (req, res) {
             console.log('User Id: ', req.user);
             console.log('Is Authenticated(profile): ', req.isAuthenticated());
-            res.render('profile', { title: 'This is Your Profile Page' });
+            res.render('profile');
         });
 
         router.get('/login', function(req, res){

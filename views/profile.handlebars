@@ -1,6 +1,39 @@
 {{> header }}
 
-<h1>{{title}}</h1>
-<h4>{{name}}</h4>
+{{!-- <h1>{{title}}</h1>
+<h4>{{name}}</h4> --}}
+
+<h4>Add a Trip</h4>
+
+{{#if errors}}
+    {{#each errors}}
+    <div class="alert alert-danger">
+        {{this.msg}}
+    </div>
+    {{/each}}
+    {{/if}}
+
+<form method="POST" action="/addtrip" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="triptitle">Give your trip a name</label>
+        <input type="text" name="triptitle" class="form-control " placeholder="New York">
+    </div>
+    <div class="form-group">
+        <label for="tripstart">Trip Start Date</label>
+        <input type="text" name="tripstart" class="form-control" placeholder="08/27/2019">
+    </div>
+    <div class="form-group">
+        <label for="tripend">Trip End Date</label>
+        <input type="text" name="tripend" class="form-control" placeholder="08/30/2019">
+    </div>
+
+    <div class="form-group">
+        <label for="picture">Add a photo of your trip</label>
+        <input type="file" name="picture" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Your Trip</button>
+</form>
+
 
 </div>

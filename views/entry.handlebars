@@ -1,0 +1,68 @@
+{{>header}}
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample">
+    Add An Entry
+</button>
+<br><br>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <form method="POST" action="/addentry" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="triptitle">Entry Title</label>
+                <input type="text" name="entrytitle" class="form-control " placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Trip Entry</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="entrynote"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="picture">Add a photo for this entry</label>
+                <input type="file" name="picture" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Your Entry</button>
+
+        </form>
+    </div>
+</div>
+<h5 class="card-header">The trip title will go here</h5>
+{{#each entry}}
+<div class="card">
+    <div class="card-body">
+        <strong class="card-title">{{entryTitle}} - <span><small>{{createdAt}}</small></span></strong>
+        <hr>
+        <img src="{{picture}}">
+        <p class="card-text">{{entryNote}}</p>
+    </div>
+</div>
+<br>
+
+
+{{/each}}
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsebottom"
+    aria-expanded="false" aria-controls="collapsebottom">
+    Add An Entry
+</button>
+<div class="collapse" id="collapsebottom">
+    <div class="card card-body">
+        <form method="POST" action="/addentry" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="triptitle">Entry Title</label>
+                <input type="text" name="entrytitle" class="form-control " placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Trip Entry</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="entrynote"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="picture">Add a photo for this entry</label>
+                <input type="file" name="picture" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Your Entry</button>
+
+        </form>
+    </div>
+</div>
+<br>
+{{>footer}}

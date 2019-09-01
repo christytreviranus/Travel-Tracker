@@ -1,0 +1,57 @@
+{{>header}}
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample">
+    Add A Trip
+</button>
+<br><br>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <form method="POST" action="/addtrip" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="triptitle">Give your trip a name</label>
+        <input type="text" name="triptitle" class="form-control " placeholder="New York">
+    </div>
+    <div class="form-group">
+        <label for="tripstart">Trip Start Date</label>
+        <input type="text" name="tripstart" class="form-control" placeholder="08/27/2019">
+    </div>
+    <div class="form-group">
+        <label for="tripend">Trip End Date</label>
+        <input type="text" name="tripend" class="form-control" placeholder="08/30/2019">
+    </div>
+
+    <div class="form-group">
+        <label for="picture">Add a photo of your trip</label>
+        <input type="file" name="picture" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Your Trip</button>
+</form>
+    </div>
+</div>
+
+<h4>Here are your trips <span class="addtrip"><a href="/profile">Add a Trip</span></h4>
+{{!-- <div class="container">
+<div class="row">
+  <div class="col-md-4"> --}}
+{{#each trips}}
+<span>
+<a href="/trips/:id" data-id="{{id}}">
+<div class="card" style="width: 18rem;" >
+    <img src="{{picture}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <p class="card-text">{{tripTitle}}</p>
+        <small>{{tripStart}}</small>
+        <small>{{tripEnd}}</small>
+    </div>
+</div>
+</a>
+</span>  
+{{!-- </div> --}}
+{{/each}}
+{{!-- </div>
+</div> --}}
+
+    
+  

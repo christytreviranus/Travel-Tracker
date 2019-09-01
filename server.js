@@ -3,6 +3,7 @@
 // =============================================================
 
 const express = require("express");
+// const multer = reuire("multer");
 const path = require("path");
 // const passportSetup = require('./config/passport.js');
 const keys = require("./keys.js");
@@ -21,6 +22,19 @@ const bcrypt = require('bcrypt');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Set storage engine
+// const storage = multer.diskStorage({
+//   destination: './public/uploads',
+//   filename: function(req, file, cb){
+//     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//   }
+// });
+
+// Init multer
+// const upload = multer({
+//   storage: storage
+// }).single('picture');
+
 // Requiring our models for syncing
 const db = require("./models");
 
@@ -31,8 +45,11 @@ const index = require('./controllers/user-controller');
 // dotenv for securing sensitive information
 require("dotenv").config();
 
+
+
 // Static directory
 app.use(express.static("public"));
+app.use('/uploads', express.static("uploads"));
 
 // Set Handlebars.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -78,6 +95,8 @@ app.use(passport.session());
 
 // Routes
 // =============================================================
+require("./controllers/trip-controller.js")(app);
+require("./controllers/entry-controller.js")(app);
 app.use('/', index);
 app.get("/css", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/css/style.css"))
