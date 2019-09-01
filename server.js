@@ -65,17 +65,17 @@ app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// for body-parser - using express to handle data parsing
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
+//for body-parser - using express to handle data parsing
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // express-mysql-session
-var options = {
-  host: 'localhost',
+let options = {
+  host: '127.0.0.1',
   port: 3306,
   user: 'root',
   password: 'root',
-  database: 'travel_db'
+  database: 'travel_tracker',
 };
 
 const sessionStore = new MySQLStore(options);
@@ -117,7 +117,7 @@ function(req, username, password, done) {
   const User = require("./models/user_model.js");
   const bcrypt = require('bcrypt');
 
-  var isValidPassword = function(userpass, password) {
+  let isValidPassword = function(userpass, password) {
       return bcrypt.compareSync(password, userpass);
   }
 
@@ -139,7 +139,7 @@ function(req, username, password, done) {
           });
       }
 
-      var userinfo = user.get();
+      let userinfo = user.get();
       return done(null, userinfo);
 
   }).catch(function(err) {

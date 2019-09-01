@@ -20,17 +20,18 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.DATE
         }
     });
-    Entry.associate = (models) => {
-        Entry.belongsTo(models.User, {
-          foreignKey: 'id'
-        });
-      }
-      Entry.associate = (models) => {
-        Entry.belongsTo(models.Trip, {
-          foreignKey: 'id'
-        });
-      }
-    return Entry;
+    Entries.associate = (models) => {
+      Entries.belongsTo(models.trips,{
+        foreignKey: {
+          allowNull: false
+        }
+      });
+      Entries.belongsTo(models.users,{
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };
 };
 
   

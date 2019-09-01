@@ -23,6 +23,15 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING, 
         }
     });
+
+    User.associate = (models) => {
+        User.hasMany(models.trips, {
+            onDelete: "cascade"
+        });
+        User.hasMany(models.entries,{
+            onDelete: "cascade"
+        });
+    }
     return User;
 };
 
