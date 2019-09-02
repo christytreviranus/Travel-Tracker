@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const User = require("../models/user.js");
+const user = require("../models/user.js");
 const db = require("../models");
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
@@ -9,7 +9,7 @@ const saltRounds = 10;
 
 
         router.get('/', function (req, res, next) {
-            console.log('User Id: ', req.user);
+            console.log('user Id: ', req.user);
             console.log('Is Authenticated(home): ', req.isAuthenticated());
             res.render('home');
         });
@@ -19,7 +19,7 @@ const saltRounds = 10;
         });
 
         router.get('/profile', authenticationMiddleware(), function (req, res) {
-            console.log('User Id: ', req.user);
+            console.log('user Id: ', req.user);
             console.log('Is Authenticated(profile): ', req.isAuthenticated());
             res.render('profile');
         });
@@ -44,8 +44,8 @@ const saltRounds = 10;
         // })
 
         router.post('/register', [                                   //function (req, res, next) {  
-            check('username', 'Username field cannot be empty.').not().isEmpty(),
-            check('username', 'Username must be between 4-15 characters long.').isLength({ min: 4, max: 15 }),
+            check('username', 'username field cannot be empty.').not().isEmpty(),
+            check('username', 'username must be between 4-15 characters long.').isLength({ min: 4, max: 15 }),
             check('email', 'The email you entered is invalid, please try again.').isEmail(),
             check('email', 'Email address must be between 4-100 characters long, please try again.').isLength({ min: 4, max: 100 }),
             check('password', 'Password must be between 8-100 characters long.').isLength({ min: 8, max: 100 }),
@@ -93,12 +93,12 @@ const saltRounds = 10;
 
                 
             });
-                    passport.serializeUser(function(user_id, done) {
+                    passport.serializeuser(function(user_id, done) {
                         done(null, user_id);
                       });
                       
-                      passport.deserializeUser(function(user_id, done) {
-                        // User.findById(user_id, function (err, user_id) {
+                      passport.deserializeuser(function(user_id, done) {
+                        // user.findById(user_id, function (err, user_id) {
                           done(null, user_id);
                         // });
                       });

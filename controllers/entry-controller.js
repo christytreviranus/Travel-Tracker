@@ -31,7 +31,7 @@ const upload = multer({
 module.exports = function(app) {
 
         app.get('/entry', function(req, res){
-            db.Entry.findAll({}).then(function(entry){
+            db.entry.findAll({}).then(function(entry){
                 res.render('entry', {
                     entry
                 })
@@ -41,16 +41,16 @@ module.exports = function(app) {
         })
 
         app.post('/addentry', upload.single('picture'), function(req, res){
-            db.Entry.create({
+            db.entry.create({
                 entryTitle: req.body.entrytitle,
                 entryNote: req.body.entrynote,
                 entryDate: req.body.entrydate,
                 picture: req.file.path
             })
-            .then(function (dbEntry) {
-                res.json(dbEntry);
+            .then(function (dbentry) {
+                res.json(dbentry);
                 // res.render('entry');
-                // console.log(dbEntry);
+                // console.log(dbentry);
             });
         })
 
