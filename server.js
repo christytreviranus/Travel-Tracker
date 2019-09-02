@@ -114,7 +114,7 @@ passport.use(new LocalStrategy(
 function(req, username, password, done) {
  
   // const User = user;
-  const User = require("./models/user_model.js");
+  const User = require("./models/user.js");
   const bcrypt = require('bcrypt');
 
   let isValidPassword = function(userpass, password) {
