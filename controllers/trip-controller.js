@@ -32,7 +32,7 @@ const upload = multer({
         module.exports = function(app) {
 
         app.get('/trips', function(req, res){
-            db.Trip.findAll({}).then(function(trips){
+            db.trip.findAll({}).then(function(trips){
             res.render('trips', {
                 trips
             })
@@ -43,7 +43,7 @@ const upload = multer({
 
         app.get("/trips/:id", function(req, res){
             const id = req.params.id;
-            db.Trip.findOne({
+            db.trip.findOne({
                 where: {
                   id: req.params.id
                 }
@@ -51,7 +51,7 @@ const upload = multer({
                 // include: [db.Post]
               }).then(function(req, res) {
                 res.send('entry', {id});
-                // res.json(dbTrip);
+                // res.json(dbtrip);
                 console.log(tripId);
               });
         })
@@ -73,14 +73,14 @@ const upload = multer({
                     errors: errors.array()
                 });
             } else {
-                db.Trip.create({
+                db.trip.create({
                     tripTitle: req.body.triptitle,
                     tripStart: req.body.tripstart,
                     tripEnd: req.body.tripend,
                     picture: req.file.path
                 })
-                .then(function (dbTrip) {
-                    // res.json(dbTrip);
+                .then(function (dbtrip) {
+                    // res.json(dbtrip);
                     res.redirect('/trips')
                 });
             }  

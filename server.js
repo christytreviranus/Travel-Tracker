@@ -121,7 +121,7 @@ function(req, username, password, done) {
       return bcrypt.compareSync(password, userpass);
   }
 
-  db.User.findOne({
+  db.user.findOne({
       where: {
           username: username
       }
