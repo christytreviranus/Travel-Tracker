@@ -93,11 +93,11 @@ const saltRounds = 10;
 
                 
             });
-                    passport.serializeuser(function(user_id, done) {
+                    passport.serializeUser(function(user_id, done) {
                         done(null, user_id);
                       });
                       
-                      passport.deserializeuser(function(user_id, done) {
+                      passport.deserializeUser(function(user_id, done) {
                         // user.findById(user_id, function (err, user_id) {
                           done(null, user_id);
                         // });
