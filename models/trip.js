@@ -20,8 +20,8 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.DATE, 
         },
         userId: {
-            type: Sequelize.INTEGER,
-        }
+            type: Sequelize.INTEGER
+    }
     }, {});
     Trip.associate = (models) => {
         //Trip belongs to a user

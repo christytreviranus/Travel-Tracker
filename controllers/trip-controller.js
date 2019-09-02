@@ -45,7 +45,7 @@ const upload = multer({
             const id = req.params.id;
             db.trip.findOne({
                 where: {
-                  id: req.params.id
+                  id: req.user
                 }
                 // ,
                 // include: [db.Post]

@@ -29,7 +29,7 @@ const saltRounds = 10;
         });
 
         router.post('/login', passport.authenticate('local', {
-            successRedirect: '/profile',
+            successRedirect: '/trips',
             failureRedirect: '/login'
         }));
 
@@ -83,7 +83,7 @@ const saltRounds = 10;
                             const user_id = user.id;
 
                             req.login(user_id, function(err){
-                                res.redirect('/profile');
+                                res.redirect('/trips');
                             })
                    
                     // res.render('reg-complete', { title: 'Registration Complete', welcome: req.body.username });
