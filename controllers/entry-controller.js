@@ -1,5 +1,5 @@
 const db = require("../models");
-const entry = require("../models/entry_model");
+const entry = require("../models/entry");
 const path = require("path");
 
 // Necessary for image upload

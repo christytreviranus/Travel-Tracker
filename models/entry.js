@@ -1,5 +1,6 @@
+'use strict';
 module.exports = function (sequelize, Sequelize) {
-    let Entry = sequelize.define("Entry", {
+    let Entry = sequelize.define("entry", {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -18,20 +19,13 @@ module.exports = function (sequelize, Sequelize) {
         },
         entryDate: {
             type: Sequelize.DATE
+        },
+        tripId: {
+            type: Sequelize.INTEGER
         }
-    });
-    Entries.associate = (models) => {
-      Entries.belongsTo(models.trips,{
-        foreignKey: {
-          allowNull: false
-        }
-      });
-      Entries.belongsTo(models.users,{
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    };
+    }, {});
+    Entry.associate = (models) => {
+    Entry.belongsTo(models.trip);
+    }
+    return Entry;
 };
-
-  

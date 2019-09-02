@@ -1,6 +1,6 @@
 const path = require("path");
 const db = require("../models");
-const trip = require("../models/trip_model");
+const trip = require("../models/trip");
 const { check, validationResult } = require('express-validator');
 
 // Necessary for image upload

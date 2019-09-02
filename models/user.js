@@ -1,6 +1,7 @@
 
+'use strict';
 module.exports = function (sequelize, Sequelize) {
-    let User = sequelize.define("User", {
+    let User = sequelize.define("user", {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -22,15 +23,12 @@ module.exports = function (sequelize, Sequelize) {
         password: {
             type: Sequelize.STRING, 
         }
-    });
-
+    }, {});
     User.associate = (models) => {
-        User.hasMany(models.trips, {
-            onDelete: "cascade"
-        });
-        User.hasMany(models.entries,{
-            onDelete: "cascade"
-        });
+        //User hasMany trips
+        User.hasMany(models.trip);
+        //User hasMany entries
+        User.hasMany(models.entry);
     }
     return User;
 };

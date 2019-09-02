@@ -1,5 +1,6 @@
+'use strict';
 module.exports = function (sequelize, Sequelize) {
-    let Trip = sequelize.define("Trip", {
+    let Trip = sequelize.define("trip", {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -17,19 +18,17 @@ module.exports = function (sequelize, Sequelize) {
         },
         tripEnd: {
             type: Sequelize.DATE, 
+        },
+        userId: {
+            type: Sequelize.INTEGER,
         }
-    });
+    }, {});
     Trip.associate = (models) => {
-        Trip.belongsTo(models.User, {
-          foreignKey: {
-              allowNull: false
-          }
-        });
-        Trip.hasMany(models.entries, {
-            onDelete: "cascade"
-        });
+        //Trip belongs to a user
+        Trip.belongsTo(models.user);
+        Trip.hasMany(models.entry);
       }
-    return Trip;
+      return Trip;
 };
 
 
