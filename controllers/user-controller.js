@@ -70,7 +70,7 @@ const saltRounds = 10;
                     const password = req.body.password;
                     const hash = bcrypt.hashSync(req.body.password, 10);
                       
-                    db.User.create(
+                    db.user.create(
                         {
                             username: username,
                             email: email,
