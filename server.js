@@ -158,7 +158,7 @@ function(req, username, password, done) {
 // this line drops the current table if already exists
 // db.sequelize.sync({ force: true }).then(function() {
 
-db.sequelize.sync().then(function () {               //this line allows tables to remain without getting dropped everytime server is restarted
+db.sequelize.sync({force: false}).then(function () {               //this line allows tables to remain without getting dropped everytime server is restarted
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });

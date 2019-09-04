@@ -1,31 +1,26 @@
 'use strict';
-module.exports = function (sequelize, Sequelize) {
-    let Entry = sequelize.define("entry", {
-        id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-        },
-        entryTitle: {
-            type: Sequelize.STRING
-        },
-        entryNote: {
-            type: Sequelize.TEXT,
-            len: [1, 1000]
-        },
-        picture: {
-            type: Sequelize.STRING
-        },
-        entryDate: {
-            type: Sequelize.DATE
-        },
-        tripId: {
-            type: Sequelize.INTEGER
-        }
-    }, {});
-    Entry.associate = (models) => {
-    Entry.belongsTo(models.trip);
+module.exports = (sequelize, DataTypes) => {
+  const Entry = sequelize.define('entry', {
+    id: {
+      allowNull: false,
+      //autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
+    entryTitle: DataTypes.STRING,
+    entryNote: DataTypes.STRING,
+    picture: DataTypes.STRING,
+    entryDate: DataTypes.DATE
+  }, {});
+  Entry.associate = function(models) {
+    // associations can be defined here
+  };
+  Entry.associate = (models) => {
+    Entry.belongsTo(models.trip, {
+        foreignKey: 'TripId',
+        onDelete: 'CASCADE'
+    });
     }
-    return Entry;
+  return Entry;
 };

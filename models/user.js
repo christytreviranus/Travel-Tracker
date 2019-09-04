@@ -1,42 +1,32 @@
-
 'use strict';
-module.exports = function (sequelize, Sequelize) {
-    let User = sequelize.define("user", {
-        id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-          },
-        username: {
-            type: Sequelize.STRING        
-        },
-        googleId: {
-            type: Sequelize.STRING    
-        },
-        thumbnail: {
-            type: Sequelize.STRING
-        },
-        email: {
-            type: Sequelize.STRING    
-        },
-        password: {
-            type: Sequelize.STRING, 
-        }
-    }, {});
-    User.associate = (models) => {
-        //User hasMany trips
-        User.hasMany(models.trip);
-        //User hasMany entries
-        User.hasMany(models.entry);
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('user', {
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
+    username: DataTypes.STRING,
+    googleId: DataTypes.STRING,
+    thumbnail: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
-    return User;
+  }, {});
+  User.associate = function(models) {
+    // associations can be defined here
+  };
+  User.associate = (models) => {
+    //User hasMany trips
+    User.hasMany(models.trip, {
+        foreignKey: 'UserId',
+        onDelete: 'CASCADE'
+    });
+    //User hasMany entries
+    //User.hasMany(models.entry);
+}
+  return User;
 };
-
-
-
-
-
-
-
-

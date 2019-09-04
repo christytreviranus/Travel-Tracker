@@ -32,29 +32,17 @@ const upload = multer({
         module.exports = function(app) {
 
         app.get('/trips', function(req, res){
-            db.trip.findAll({}).then(function(trips){
+            db.trip.findAll({
+                where: {
+                    UserId: req.user.id
+                }
+            }).then(function(trips){
             res.render('trips', {
                 trips
             })
             // res.json(data);
                 });   
             });
-
-
-        app.get("/trips/:id", function(req, res){
-            const id = req.params.id;
-            db.trip.findOne({
-                where: {
-                  id: req.user
-                }
-                // ,
-                // include: [db.Post]
-              }).then(function(req, res) {
-                res.send('entry', {id});
-                // res.json(dbtrip);
-                console.log(tripId);
-              });
-        })
 
         // POST route for saving a new post
         app.post("/addtrip", upload.single('picture'), [                                 
@@ -77,7 +65,8 @@ const upload = multer({
                     tripTitle: req.body.triptitle,
                     tripStart: req.body.tripstart,
                     tripEnd: req.body.tripend,
-                    picture: req.file.path
+                    picture: req.file.path,
+                    UserId: req.user.id
                 })
                 .then(function (dbtrip) {
                     // res.json(dbtrip);
