@@ -31,18 +31,36 @@ const upload = multer({
 
         module.exports = function(app) {
 
-        app.get('/trips', function(req, res){
-            db.trip.findAll({
-                where: {
-                    UserId: req.user.id
-                }
-            }).then(function(trips){
-            res.render('trips', {
-                trips
-            })
-            // res.json(data);
-                });   
+            app.get('/mytrips', function(req, res){
+                db.trip.findAll({
+                    where: {
+                        UserId: req.user.id
+                    }
+                }).then(function(trips){
+                res.render('trips', { trips })
+                    });   
             });
+        
+        // app.get('/mytrips', authenticationMiddleware(), function(req, res){
+        //     // these lines are here for testing that when we land on /mytrips I can still get user data
+        //     // console.log('user Id: ', req.user);
+        //     // console.log('Is Authenticated(trips): ', req.isAuthenticated());
+        //     // console.log('------------------------------------------------');
+        //     db.trip.findAll({
+        //         where: {
+        //             UserId: req.user.id
+        //         }
+        //     }).then(function(trips){
+        //     res.render('trips', { trips }, req, res)
+        //     // console.log(trips)
+        //         });   
+        // });
+
+
+        app.get('/addtrips', function(req, res){
+            res.render('trips');
+        })
+
 
         // POST route for saving a new post
         app.post("/addtrip", upload.single('picture'), [                                 
@@ -70,11 +88,21 @@ const upload = multer({
                 })
                 .then(function (dbtrip) {
                     // res.json(dbtrip);
-                    res.redirect('/trips')
+                    res.redirect('/mytrips');
+                    // console.log(dbtrip);
                 });
             }  
         });
 
-
-
         };            //end module exports function
+
+        // middleware for testing purposes
+        function authenticationMiddleware() {  
+            return (req, res, next) => {
+                console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+        
+                if (req.isAuthenticated()) return next();
+                res.redirect('/login')
+                console.log('the user is authenticated');
+            }
+        }

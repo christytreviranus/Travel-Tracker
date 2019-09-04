@@ -31,19 +31,22 @@
     </div>
 </div>
 
-<h4>Here are your trips <span class="addtrip"><a href="/profile">Add a Trip</span></h4>
+<h4>Here are your trips</h4>
 {{!-- <div class="container">
 <div class="row">
   <div class="col-md-4"> --}}
+      <h3>Welcome {{username}}</h3>
 {{#each trips}}
 <span>
-<a href="/trips/:id" data-id="{{id}}">
+<a href="/entry" id="{{id}}">
 <div class="card" style="width: 18rem;" >
     <img src="{{picture}}" class="card-img-top" alt="...">
     <div class="card-body">
         <p class="card-text">{{tripTitle}}</p>
         <small>{{tripStart}}</small>
         <small>{{tripEnd}}</small>
+        <br>
+        <small>ID: {{id}}</small>
     </div>
 </div>
 </a>
