@@ -38,7 +38,7 @@
       <h3>Welcome {{username}}</h3>
 {{#each trips}}
 <span>
-<a href="/entry" id="{{id}}">
+<a href="/entry" id="{{id}}" onclick="storeTrip()">
 <div class="card" style="width: 18rem;" >
     <img src="{{picture}}" class="card-img-top" alt="...">
     <div class="card-body">
@@ -56,5 +56,10 @@
 {{!-- </div>
 </div> --}}
 
-    
+<script>
+function storeTrip() {
+  const TripId = $("#id");
+  localStorage.setItem('TripId', TripId.Obj);
+  }
+</script>
   

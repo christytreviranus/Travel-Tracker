@@ -1,7 +1,7 @@
 const db = require("../models");
 const entry = require("../models/entry");
 const path = require("path");
-// const trip = require("../models/trip");
+const { check, validationResult } = require('express-validator');
 
 // Necessary for image upload
 const multer = require('multer');
@@ -31,7 +31,6 @@ const upload = multer({
 });
 
 module.exports = function (app) {
-
 
             app.get('/addentry', function(req, res){
                 res.render('entry');
@@ -71,29 +70,39 @@ module.exports = function (app) {
                 res.render('trips');
             })
 
-            app.post('/addentry', upload.single('picture'), function (req, res) {
-                
-               
+            //POST route for saving a new entry
+            app.post('/addentry', upload.single('picture'), [                                 
+                check('entrytitle', 'You must enter a name for your entry.').not().isEmpty(),
+                check('entrynote', 'You must enter some text for your entry description.').not().isEmpty(),
+                check('path', 'You must upload an image for this entry').not().isEmpty()
+            ],       
+            function (req, res) {
+                console.log(req.file);
+                const errors = validationResult(req);
+                console.log(req.body);
+    
+                if (!errors.isEmpty()) {
+                    res.render('profile', {
+                        title: 'Oops, you did not add your entry!',
+                        errors: errors.array()
+                    });
+                } else {
                 db.entry.create(
                     {
                     entryTitle: req.body.entrytitle,
                     entryNote: req.body.entrynote,
                     entryDate: req.body.entrydate,
                     picture: req.file.path,
-                    TripId: req.trip.id
-                    
-                }     
-                )
+                    TripId: findById("#id") 
+            })
                     .then(function (dbentry) {
                         // res.json(dbentry);
                         // res.render('entry');
                         console.log(dbentry);
                     });
-            })
-
-
-
-}
+            }
+        });
+};
 
 function authenticationMiddleware() {  
     return (req, res, next) => {

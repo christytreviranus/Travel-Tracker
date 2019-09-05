@@ -13,7 +13,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       picture: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       tripStart: {
         type: Sequelize.DATE
