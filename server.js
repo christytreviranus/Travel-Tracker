@@ -101,6 +101,9 @@ app.use('/', index);
 app.get("/css", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/css/style.css"))
 });
+app.get("/css", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/css/home.css"))
+});
 
 passport.use(new LocalStrategy(
 

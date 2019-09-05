@@ -31,6 +31,10 @@ const upload = multer({
 
         module.exports = function(app) {
 
+            app.get('/getId', function (req, res){
+                
+            });
+
             app.get('/mytrips', function(req, res){
                 db.trip.findAll({
                     where: {
@@ -38,23 +42,10 @@ const upload = multer({
                     }
                 }).then(function(trips){
                 res.render('trips', { trips })
-                    });   
+                console.log(trips)
+                    }); 
+                      
             });
-        
-        // app.get('/mytrips', authenticationMiddleware(), function(req, res){
-        //     // these lines are here for testing that when we land on /mytrips I can still get user data
-        //     // console.log('user Id: ', req.user);
-        //     // console.log('Is Authenticated(trips): ', req.isAuthenticated());
-        //     // console.log('------------------------------------------------');
-        //     db.trip.findAll({
-        //         where: {
-        //             UserId: req.user.id
-        //         }
-        //     }).then(function(trips){
-        //     res.render('trips', { trips }, req, res)
-        //     // console.log(trips)
-        //         });   
-        // });
 
 
         app.get('/addtrips', function(req, res){
