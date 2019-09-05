@@ -56,8 +56,9 @@ const upload = multer({
         // POST route for saving a new post
         app.post("/addtrip", upload.single('picture'), [                                 
             check('triptitle', 'You must enter a name for your trip.').not().isEmpty(),
-            check('tripstart', 'You must enter a name for your trip.').not().isEmpty(),
-            check('tripend', 'You must enter a name for your trip.').not().isEmpty(),
+            check('tripstart', 'You must enter a start date for your trip.').not().isEmpty(),
+            check('tripend', 'You must enter an end date for your trip.').not().isEmpty(),
+            check('path', 'You must upload an image of your trip').not().isEmpty(),
         ],
         function (req, res) {
             console.log(req.file);
@@ -66,7 +67,7 @@ const upload = multer({
 
             if (!errors.isEmpty()) {
                 res.render('profile', {
-                    title: 'Oops, you need to and a trip first!',
+                    title: 'Oops, you need to add a trip first!',
                     errors: errors.array()
                 });
             } else {
@@ -76,7 +77,7 @@ const upload = multer({
                     tripEnd: req.body.tripend,
                     picture: req.file.path,
                     UserId: req.user.id
-                })
+                })                  
                 .then(function (dbtrip) {
                     // res.json(dbtrip);
                     res.redirect('/mytrips');

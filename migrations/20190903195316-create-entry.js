@@ -14,9 +14,7 @@ module.exports = {
       entryNote: {
         type: Sequelize.STRING
       },
-      picture: {
-        type: Sequelize.STRING
-      },
+      picture: Sequelize.STRING,
       entryDate: {
         type: Sequelize.DATE
       },
