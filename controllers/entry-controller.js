@@ -73,6 +73,7 @@ module.exports = function (app) {
 
             app.post('/addentry', upload.single('picture'), function (req, res) {
                 
+               
                 db.entry.create(
                     {
                     entryTitle: req.body.entrytitle,
@@ -80,6 +81,7 @@ module.exports = function (app) {
                     entryDate: req.body.entrydate,
                     picture: req.file.path,
                     TripId: req.trip.id
+                    
                 }     
                 )
                     .then(function (dbentry) {
