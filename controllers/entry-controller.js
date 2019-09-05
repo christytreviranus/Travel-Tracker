@@ -46,7 +46,7 @@ module.exports = function (app) {
             })
         
 
-            app.get('/entry', function(req, res){
+            app.get('/entry/', function(req, res){
                 db.entry.findAll({}).then(function(entry){
                     res.render('entry', {
                         entry
@@ -74,7 +74,7 @@ module.exports = function (app) {
             app.post('/addentry', upload.single('picture'), [                                 
                 check('entrytitle', 'You must enter a name for your entry.').not().isEmpty(),
                 check('entrynote', 'You must enter some text for your entry description.').not().isEmpty(),
-                check('path', 'You must upload an image for this entry').not().isEmpty()
+                //check('path', 'You must upload an image for this entry').not().isEmpty()
             ],       
             function (req, res) {
                 console.log(req.file);
@@ -87,13 +87,14 @@ module.exports = function (app) {
                         errors: errors.array()
                     });
                 } else {
+                //let TripId = "{{id}}"; Still working on this to get the id into the database
                 db.entry.create(
                     {
                     entryTitle: req.body.entrytitle,
                     entryNote: req.body.entrynote,
                     entryDate: req.body.entrydate,
                     picture: req.file.path,
-                    TripId: findById("#id") 
+                    TripId: req.params.TripId
             })
                     .then(function (dbentry) {
                         // res.json(dbentry);

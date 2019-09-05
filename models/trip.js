@@ -9,10 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     tripTitle: DataTypes.STRING,
-    picture: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+    picture: DataTypes.STRING,
     tripStart: DataTypes.DATE,
     tripEnd: DataTypes.DATE
   }, {});

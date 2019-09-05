@@ -10,10 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     entryTitle: DataTypes.STRING,
     entryNote: DataTypes.STRING,
-    picture: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+    picture: DataTypes.STRING,
     entryDate: DataTypes.DATE
   }, {});
   Entry.associate = function(models) {
