@@ -1,0 +1,131 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #173042;
+  }
+  
+  #navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #173042;
+    padding: 15px;
+    opacity: .75;
+    width: 80vw;
+    margin: 0 auto;
+  }
+  
+  #titleTravel {
+   height: 15%;
+   width: 15%; 
+  }
+
+  .row {
+    margin-bottom: 25px;
+  }
+  
+  .jumbotron {
+      background-color: #236477;
+      text-align: center;
+      min-height: 100vh;
+      width: 100vw;
+      /* background-image: url("https://media.giphy.com/media/f8mPZSlRoEL4KrlVax/giphy.gif"); */
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  .title {
+      text-align: middle;
+  }
+  
+  h1, h3, li {
+    color: white;
+    text-shadow: 2px 2px #173042;
+  }
+  
+  .signIn {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  #signUp {
+    background-color: #236477;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: bold;
+    font-size: 24px;
+    height: 50px;
+    transition: .10s;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .newTrip {
+      background-color: #236477;
+      height: 20%;
+      width: 20%;
+  }
+  
+  #signIn {
+    background-color: #173042;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: bold;
+    display: inline-block;
+    font-size: 24px;
+    transition: .10s;
+  }
+  
+  #signUp:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    border-radius: 10px;
+  }
+  
+  #signIn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
