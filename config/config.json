@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "travel_tracker",
+    "username": "username",
+    "password": "password",
+    "database": "db_name",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
@@ -14,10 +14,12 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "xy7ngdaw6o1abb8z",
+    "password": "w44ny56mqr3xezes",
+    "database": "gvmwd0ezbswulh7a",
+    "host": "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "use_env_variable":"JAWSDB_URL"
   }
 }
+
