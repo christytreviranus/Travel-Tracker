@@ -67,11 +67,11 @@ app.use(bodyParser.json());
 
 // express-mysql-session
 let options = {
-  host: '127.0.0.1',
+  host: 'q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
   port: 3306,
-  user: 'root',
-  password: 'root',
-  database: 'travel_tracker',
+  user: 'xy7ngdaw6o1abb8z',
+  password: 'w44ny56mqr3xezes',
+  database: 'gvmwd0ezbswulh7a',
 };
 
 const sessionStore = new MySQLStore(options);
