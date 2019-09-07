@@ -44,13 +44,13 @@ To set up this application locally on your computer, perform the following steps
 
 ## Technologies Used
 
-JavaScript
-HTML
-Sequelize
-MYSQL
-Handlebars
-Express
-Node
-Passport
-BCrypt
+*JavaScript
+*HTML
+*Sequelize
+*MYSQL
+*Handlebars
+*Express
+*Node
+*Passport
+*BCrypt
 
