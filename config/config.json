@@ -17,7 +17,7 @@
     "username": "xy7ngdaw6o1abb8z",
     "password": "w44ny56mqr3xezes",
     "database": "gvmwd0ezbswulh7a",
-    "host": "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "host": "mysql://xy7ngdaw6o1abb8z:w44ny56mqr3xezes@q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/gvmwd0ezbswulh7a",
     "dialect": "mysql"
   }
 }
