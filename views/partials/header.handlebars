@@ -1,0 +1,27 @@
+
+<header>
+    <h2><a href="/">
+        Travel Tracker</a></h2>
+    <nav>
+      <ul>
+        {{#if user.isAuthenticated}}
+        <li>
+          <a href="/login">Login</a>
+        </li>
+        {{else}}
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+        <li>
+          <a href="/mytrips">Trips</a>
+        </li>
+        <li>
+          <a href="/entry">Entries</a>
+        </li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>

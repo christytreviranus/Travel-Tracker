@@ -1,0 +1,80 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: #173042;
+}
+
+#navbar {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  background-color: #173042;
+  padding: 15px;
+  opacity: .75;
+}
+
+#titleTravel {
+ height: 25%;
+ width: 25%; 
+ align-content: flex-start;
+}
+
+.jumbotron {
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("https://media.giphy.com/media/f8mPZSlRoEL4KrlVax/giphy.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title {
+    text-align: middle;
+}
+
+h2 {
+  color: white;
+  text-shadow: 2px 2px #173042;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.signIn {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#signUp {
+  background-color: #236477;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: bold;
+  font-size: 24px;
+  height: 50px;
+  transition: .10s;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#signIn {
+  background-color: #173042;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: bold;
+  display: inline-block;
+  font-size: 24px;
+  transition: .10s;
+}
+
+#signUp:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  border-radius: 10px;
+}
+
+#signIn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
