@@ -7,7 +7,7 @@
   body {
     background-color: #173042;
   }
-  
+
   #navbar {
     display: flex;
     justify-content: space-between;
@@ -16,6 +16,10 @@
     opacity: .75;
     width: 80vw;
     margin: 0 auto;
+  }
+
+  .spacer {
+    width: 50%;
   }
   
   #titleTravel {

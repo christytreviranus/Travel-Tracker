@@ -26,6 +26,9 @@ a:hover {
   width: auto
 }
 
+.spacer {
+  width: 50%;
+}
 
 .wrapper {
   background: url('../images/bg8.jpg') no-repeat center center fixed / cover;

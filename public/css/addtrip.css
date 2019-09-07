@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
 }
+
+.spacer {
+    width: 50%;
+  }
+
 .rate {
     float: left;
     height: 46px;
