@@ -1,16 +1,27 @@
-<div class="container">
-    Test Header links for developing routes
-    <ul>
-        {{!-- {{#if isAuthenticated}} --}}
-        <li><a href="/">Home</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/logout">Logout</a></li>
-        {{!-- {{else}} --}}
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/trips">Trips</a></li>
-        <li><a href="/entry">Entry</a></li>
-        {{!-- {{/if}} --}}
-    </ul>
 
-</div>
+<header>
+    <h2><a href="/">
+        Travel Tracker</a></h2>
+    <nav>
+      <ul>
+        {{#if user.isAuthenticated}}
+        <li>
+          <a href="/login">Login</a>
+        </li>
+        {{else}}
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+        <li>
+          <a href="/mytrips">Trips</a>
+        </li>
+        <li>
+          <a href="/entry">Entries</a>
+        </li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>

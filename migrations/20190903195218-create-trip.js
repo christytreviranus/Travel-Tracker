@@ -12,9 +12,7 @@ module.exports = {
       tripTitle: {
         type: Sequelize.STRING
       },
-      picture: {
-        type: Sequelize.STRING
-      },
+      picture: Sequelize.STRING,
       tripStart: {
         type: Sequelize.DATE
       },

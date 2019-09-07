@@ -1,9 +1,30 @@
-{{> header }}
+{{!-- {{> header }} --}}
 
-<div class="jumbotron">
-    <h1 class="display-4">Travel Tracker</h1>
-    <p class="lead">Log your travels and adventures here.</p>
-    <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="/register" role="button">Sign Up</a>
-    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+
+<header>
+    <h2>Travel Tracker</h2>
+    <nav>
+      <ul>
+       
+        <li>
+          <a href="/login">Login</a>
+        </li>
+  
+      
+      </ul>
+    </nav>
+  </header>
+<div class="wrapper">
+
+    <div class="jumbotron">
+        <h1 class="display-4" id="title"><strong>Travel Tracker</strong></h1>
+        <p class="lead"><strong> where you've been, read about where you'll go.</strong></p>
+        {{!-- <hr class="my-4"> --}}
+        <br>
+        <br>
+        <a class="btn btn-primary btn-lg" href="/register" role="button" id="sign-up">Sign Up</a>
+        {{!-- <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> --}}
+    </div>
+
 </div>
+

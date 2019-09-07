@@ -1,57 +1,86 @@
-{{>header}}
+{{!-- {{>header}} --}}
 
+<header>
+    <h2>
+        Travel Tracker</h2>
+    <nav>
+      <ul>
+        
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+        <li>
+          <a href="/entry">Entries</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+<div class="container">
+
+    <div class="trip-main">
+    <h4 id="trip-header">Welcome <strong>{{user.username}}</strong><span>
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-    aria-expanded="false" aria-controls="collapseExample">
-    Add A Trip
-</button>
-<br><br>
-<div class="collapse" id="collapseExample">
-    <div class="card card-body">
-        <form method="POST" action="/addtrip" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="triptitle">Give your trip a name</label>
-        <input type="text" name="triptitle" class="form-control " placeholder="New York">
+        aria-expanded="false" aria-controls="collapseExample" id="add-trip">
+        Add A Trip
+    </button></span></h4>
     </div>
-    <div class="form-group">
-        <label for="tripstart">Trip Start Date</label>
-        <input type="text" name="tripstart" class="form-control" placeholder="08/27/2019">
-    </div>
-    <div class="form-group">
-        <label for="tripend">Trip End Date</label>
-        <input type="text" name="tripend" class="form-control" placeholder="08/30/2019">
-    </div>
+    <hr>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form method="POST" action="/addtrip" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="triptitle">Give your trip a name</label>
+                    <input type="text" name="triptitle" class="form-control " placeholder="New York" id="triptitle">
+                </div>
+                <div class="form-group">
+                    <label for="tripstart">Trip Start Date</label>
+                    <input type="text" name="tripstart" class="form-control" placeholder="08/27/2019" id="tripstart">
+                </div>
+                <div class="form-group">
+                    <label for="tripend">Trip End Date</label>
+                    <input type="text" name="tripend" class="form-control" placeholder="08/30/2019" id="tripend">
+                </div>
 
-    <div class="form-group">
-        <label for="picture">Add a photo of your trip</label>
-        <input type="file" name="picture" class="form-control-file" id="exampleFormControlFile1">
-    </div>
+                <div class="form-group">
+                    <label for="picture">Add a photo of your trip</label>
+                    <input type="file" name="picture" class="form-control-file" id="picture">
+                </div>
 
-    <button type="submit" class="btn btn-primary">Submit Your Trip</button>
-</form>
+                <button type="submit" class="btn btn-primary">Submit Your Trip</button>
+            </form>
+        </div>
     </div>
-</div>
-
-<h4>Here are your trips <span class="addtrip"><a href="/profile">Add a Trip</span></h4>
-{{!-- <div class="container">
-<div class="row">
-  <div class="col-md-4"> --}}
-{{#each trips}}
-<span>
-<a href="/trips/:id" data-id="{{id}}">
-<div class="card" style="width: 18rem;" >
-    <img src="{{picture}}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <p class="card-text">{{tripTitle}}</p>
-        <small>{{tripStart}}</small>
-        <small>{{tripEnd}}</small>
-    </div>
-</div>
-</a>
-</span>  
-{{!-- </div> --}}
-{{/each}}
-{{!-- </div>
-</div> --}}
 
     
-  
+    {{#each trips}}
+    <span class="tripcard" id="{{id}}">
+        <a href="/entry">
+            <div class="card" style="width: 28rem;" id="trip-card">
+
+                <img src="{{picture}}" class="card-img-top" alt="...">
+
+                    <p class="card-text" id="card-title">{{tripTitle}}</p>
+                <div class="card-body" id="card-body">
+
+                    <div id="card-text">
+                    <p><strong>Tip Start Date: </strong>{{tripStart}}</p>
+                    <p><strong>Trip End Date: </strong>{{tripEnd}}</p>
+                    {{!-- <p>ID: {{id}}</p> --}}
+                    <hr>
+                    <i class="far fa-edit fa-lg" id="edit-button"></i><span>
+                    <i class="far fa-trash-alt fa-lg" id="delete-button"></i></span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </span>
+
+    {{/each}}
+
+</div>
+
+
+
+
+

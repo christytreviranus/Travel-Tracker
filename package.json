@@ -27,7 +27,9 @@
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^5.16.0",
+    "sequelize": "^5.16.0"
+  },
+  "devDependencies": {
     "sequelize-cli": "^5.5.1"
   }
 }
