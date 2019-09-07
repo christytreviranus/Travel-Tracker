@@ -1,25 +1,30 @@
-{{> header }}
+{{!-- {{> header }} --}}
 
-{{!-- <div class="container">
+
+<header>
+    <h2>Travel Tracker</h2>
+    <nav>
+      <ul>
+       
+        <li>
+          <a href="/login">Login</a>
+        </li>
+  
+      
+      </ul>
+    </nav>
+  </header>
+<div class="wrapper">
+
     <div class="jumbotron">
-        <h1 class="display-4">Travel Tracker</h1>
-        <p class="lead">Log your travels and adventures here.</p>
-        <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="/register" role="button">Sign Up</a>
-        <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+        <h1 class="display-4" id="title"><strong>Travel Tracker</strong></h1>
+        <p class="lead"><strong> where you've been, read about where you'll go.</strong></p>
+        {{!-- <hr class="my-4"> --}}
+        <br>
+        <br>
+        <a class="btn btn-primary btn-lg" href="/register" role="button" id="sign-up">Sign Up</a>
+        {{!-- <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> --}}
     </div>
-</div> --}}
 
-<div class="jumbotron jumbotron-fluid" class="jumbotron">
-    
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="middleLogo"><img src="https://i.imgur.com/OtiE6gS.png"></div>
-                    <h2>Track where you've been, <br>
-                        read about where you'll go.</h2>
-                    <a href="/register"><button type="button" class="btn btn-primary" id="signUp">Sign Up</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+

@@ -55,11 +55,7 @@ app.use('/uploads', express.static("uploads"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// cookie session - used for google oAuth
-// app.use(cookieSession({
-//     maxAge: 24 * 60 * 60 * 1000,
-//     keys: [keys.cookiekey]
-// }))
+
 
 // Sets up the Express app to handle data parsing
 app.use(express.json());
@@ -103,6 +99,9 @@ app.get("/css", function (req, res) {
 });
 app.get("/css", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/css/home.css"))
+});
+app.get("/js", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/js/trip.js"))
 });
 
 passport.use(new LocalStrategy(

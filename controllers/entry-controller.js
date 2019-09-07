@@ -46,7 +46,7 @@ module.exports = function (app) {
             })
         
 
-            app.get('/entry/', function(req, res){
+            app.get('/entry', function(req, res){
                 db.entry.findAll({}).then(function(entry){
                     res.render('entry', {
                         entry
@@ -94,12 +94,13 @@ module.exports = function (app) {
                     entryNote: req.body.entrynote,
                     entryDate: req.body.entrydate,
                     picture: req.file.path,
-                    TripId: req.params.TripId
+                    // TripId: req.body.TripId
             })
                     .then(function (dbentry) {
                         // res.json(dbentry);
                         // res.render('entry');
-                        console.log(dbentry);
+                        res.redirect('/entry');
+                        // console.log(dbentry);
                     });
             }
         });
